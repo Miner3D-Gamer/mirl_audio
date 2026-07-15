@@ -7,8 +7,15 @@ license.workspace = true
 authors.workspace = true
 
 [features]
-default = ["std"]
-std = []
+default = [
+    "std",
+    "bitcode?/std",
+    "serde?/std",
+    "strum?/std",
+    "wincode?/std",
+    "zerocopy?/std",
+]
+std = ["bitcode?/std", "serde?/std", "strum?/std", "wincode?/std", "zerocopy?/std"]
 # Does nothing by itself. Needs another codec or enum flag to do something
 mirl_derive = ["dep:mirl_derive"]
 # Compatibility with ffi
@@ -18,7 +25,7 @@ all_codecs = ["serde", "bitcode", "wincode", "compactly", "zerocopy"]
 # All enum extensions
 all_enum_extensions = ["strum", "enum_ext"]
 # Codec stuff
-serde = ["dep:serde", "mirl_derive"]
+serde = ["dep:serde", "mirl_derive", "bitcode?/serde"]
 bitcode = ["dep:bitcode", "mirl_derive"]
 wincode = ["dep:wincode", "mirl_derive"]
 compactly = ["dep:compactly", "mirl_derive"]
